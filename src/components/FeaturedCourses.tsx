@@ -1,7 +1,7 @@
 "use client";
 
-import rawCourseData from "../data/code_courses.json"
-import { BackgroundGradient } from "./ui/Background-gradient"
+import rawCourseData from "../data/code_courses.json";
+import { BackgroundGradient } from "./ui/Background-gradient";
 import Link from "next/link";
 
 
