@@ -1,9 +1,8 @@
 "use client";
 
-import rawCourseData from "../data/code_courses.json";
-import { BackgroundGradient } from "./ui/Background-gradient"
+import CourseData from "../data/code_courses.json";
+import { BackgroundGradient } from "./ui/Background-gradient";
 import Link from "next/link";
-
 
 interface Course {
   id: number;
@@ -13,16 +12,15 @@ interface Course {
   price: number;
   instructor: string;
   isFeatured: boolean;
-  image: string;
+  
 }
 
-
 const courseData: { courses: Course[] } = {
-    courses: rawCourseData.courses.map((course) => ({
-      ...course,
-      image: course[" image"] || course[" image"], 
-    })),
-  };
+  courses: CourseData.courses.map((course) => ({
+    ...course,
+ 
+  })),
+};
 
 const FeaturedCourses: React.FC = () => {
   const featuredCourses = courseData.courses.filter(
@@ -41,25 +39,25 @@ const FeaturedCourses: React.FC = () => {
       </div>
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
-      {featuredCourses.map((course: Course, index) => (
-  <div key={`${course.id}-${index}`} className="flex justify-center">
-    <BackgroundGradient className="flex flex-col rounded-[22px] bg-zinc-900 overflow-hidden h-full max-w-sm p-6">
-      <div className="fp-4 sm:p-6 flex flex-col items-center text-center flex-grow">
-        <p className="text-lg sm:text-xl mt-4 mb-2 text-neutral-200">
-          {course.title}
-        </p>
-        <p className="text-sm text-neutral-400 flex-grow">
-          {course.description}
-        </p>
-        <Link href={`/courses/${course.slug}`}>
-          <span className="text-teal-400 hover:underline mt-4">
-            Learn more
-          </span>
-        </Link>
-      </div>
-    </BackgroundGradient>
-  </div>
-))}
+        {featuredCourses.map((course: Course) => (
+          <div key={course.id} className="flex justify-center">
+            <BackgroundGradient className="flex flex-col rounded-[22px] bg-zinc-900 overflow-hidden h-full max-w-sm p-6">
+              <div className="fp-4 sm:p-6 flex flex-col items-center text-center flex-grow">
+                <p className="text-lg sm:text-xl mt-4 mb-2 text-neutral-200">
+                  {course.title}
+                </p>
+                <p className="text-sm text-neutral-400 flex-grow">
+                  {course.description}
+                </p>
+                <Link href={`/courses/${course.slug}`}>
+                  <span className="text-teal-400 hover:underline mt-4">
+                    Learn more
+                  </span>
+                </Link>
+              </div>
+            </BackgroundGradient>
+          </div>
+        ))}
       </div>
 
       <div className="mt-20 text-center">
